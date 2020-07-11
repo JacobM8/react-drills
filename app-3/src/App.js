@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
+// Create an app where there is an array of data on state that is then shown on the DOM as a list. There 
+// should also be a way for the user to filter what's shown in the list. The array of data can be as simple 
+// as an array of strings. The list can be as simple as a list of <h2> elements.
+// See https://github.com/DevMountain/react-drills
+// "npx create-react-app folder-name" command in terminal to create new react app
+
+import React, { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      list: ['spaghetti ', 'ice cream ', 'sushi ', 'bologna ', 'cheese '],
+      userInput: ''
+    };
+  }
+
+  inputHandler = input => {
+    this.setState({ userInput: input })
+  }
+
+  render() {
+    const outputList = this.state.list.filter((item, index) => {
+      return item.match(this.state.userInput);
+    }).map((item, index) => {
+      return <h2 key={index}>{item}</h2>
+    })
+
+    return (
+      <div>
+        <div className="row" style={{ textAlign: 'center' }}>
+          <input onChange={e => this.inputHandler(e.target.value)} />
+          {outputList}
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
