@@ -3,6 +3,7 @@
 // as an array of strings. The list can be as simple as a list of <h2> elements.
 // See https://github.com/DevMountain/react-drills
 // "npx create-react-app folder-name" command in terminal to create new react app
+// need to run comman "yarn" at beginning to install node_modules and other default functionality
 
 import React, { Component } from 'react';
 import './App.css';
